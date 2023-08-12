@@ -1,0 +1,26 @@
+-- Crear la base de datos "Insurance"
+CREATE DATABASE Insurance;
+
+USE Insurance
+CREATE TABLE Insurance (
+    id INT PRIMARY KEY IDENTITY,
+    name VARCHAR(255) NOT NULL,
+    sum_Insured NUMERIC NOT NULL,
+    premium NUMERIC NOT NULL
+);
+
+CREATE TABLE Client (
+    id_Client INT PRIMARY KEY IDENTITY,
+    cedula VARCHAR(10) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    age INT NOT NULL
+);
+
+CREATE TABLE ClientInsurance (
+    id INT PRIMARY KEY IDENTITY,
+    id_Client INT NOT NULL,
+    id_Insurance INT NOT NULL,
+    CONSTRAINT FK_ClientInsurance_Client FOREIGN KEY (id_Client) REFERENCES Client(id_Client),
+    CONSTRAINT FK_ClientInsurance_Insurance FOREIGN KEY (id_Insurance) REFERENCES Insurance(id)
+);
