@@ -1,0 +1,113 @@
+<div class="seguro">  
+    <div class="info">
+        <span>
+            Consultar Seguros
+        </span>
+    </div>
+    <div class="registro-info">
+        <table class="table table-hover">
+            <thead>
+              <tr class="tabla">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Suma</th>
+                <th scope="col">Prima</th>
+                <th scope="col"> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="columna" *ngFor="let seg of insurance">
+                <th scope="row" >{{seg.id}}</th>
+                <td>{{seg.name}}</td>
+                <td>{{seg.sum_Insured}}</td>
+                <td>{{seg.premium}}</td>
+                <td>
+                  <button type="button" (click)="openEditPopup(seg)">Editar </button>
+                  <button type="button" (click)="eliminarSeguro(seg.id)">Eliminar </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="table_button">
+      <div class="imprimir-button">
+        <button type="button" (click)="openPopup()">Agregar </button> 
+      </div>
+    </div>
+  
+    
+    <form [formGroup]="formulario">
+      <div class="popup" id="popup"> 
+        <div class="logo">
+            <i class='bx bx-x' style='color:rgb(255, 255, 255)' (click)="closePopup()"></i>
+            <a href="#" >Aseguradora bh</a>
+        </div>
+        <div class="registro_info_conte">
+          <div class="form-item">
+            <h2>Ingresa un nuevo seguro</h2>
+            <label for="nombre">Nombre</label>
+            <input formControlName="name" type="text" id="name" name="name" placeholder="Ingrese su nombre" [value]="name">
+            <div *ngIf="formulario.get('name')?.touched && formulario.get('name')?.invalid">
+              <div *ngIf="formulario.get('name')?.errors?.['required']">El nombre es obligatorio.</div>
+            </div>
+          </div>
+          <div class="form-item">
+              <label for="sum_Insured">Suma</label>
+              <input class="input-item" formControlName="sum_Insured" type="number" id="sum_Insured" name="sum_Insured" >
+              <div *ngIf="formulario.get('sum_Insured')?.touched && formulario.get('sum_Insured')?.invalid">
+                <div *ngIf="formulario.get('sum_Insured')?.errors?.['required']">La suma es obligatoria.</div>
+              </div>
+          </div>
+          <div class="form-item">
+              <label for="Premium">Prima</label>
+              <input  formControlName="Premium" type="number" id="Premium"  name="Premium">
+              <div *ngIf="formulario.get('Premium')?.touched && formulario.get('Premium')?.invalid">
+                <div *ngIf="formulario.get('Premium')?.errors?.['required']">La prima es obligatoria.</div>
+              </div>
+          </div>
+        </div> 
+        <button (click)="sendIsurance()">Enviar</button>
+        <form (submit)="uploadFile()">
+          <label class="formlabel"  for="excelFile">Seleccionar archivo Excel: &nbsp;</label> 
+          <input type="file" id="excelFile" (change)="handleFileInput($event)">
+          <button type="submit">Subir archivo</button>
+        </form>
+      </div>
+    </form>
+    <form [formGroup]="formulario">
+      <div class="editpopup" id="editpopup"> 
+        <div class="logo">
+            <i class='bx bx-x' style='color:rgb(255, 255, 255)' (click)="closeEditPopup()"></i>
+            <a href="#" >Aseguradora bh</a>
+        </div>
+        <div class="registro_info_conte">
+          <div class="form-item">
+              <h2>Ingresa un nuevo seguro</h2>
+              <label for="nombre">Nombre</label>
+              <input formControlName="name" type="text" id="name" name="name" placeholder="Ingrese su nombre">              
+              <div *ngIf="formulario.get('name')?.touched && formulario.get('name')?.invalid">
+                <div *ngIf="formulario.get('name')?.errors?.['required']">El nombre es obligatorio.</div>
+              </div>
+          </div>
+          <div class="form-item">
+            <label for="sum_Insured">Suma</label>
+            <input class="input-item" formControlName="sum_Insured" type="number" id="sum_Insured" name="sum_Insured">
+            <div *ngIf="formulario.get('sum_Insured')?.touched && formulario.get('sum_Insured')?.invalid">
+              <div *ngIf="formulario.get('sum_Insured')?.errors?.['required']">La suma es obligatoria.</div>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="Premium">Prima</label>
+            <input  formControlName="Premium" type="number" id="Premium"  name="Premium"  >
+            <div *ngIf="formulario.get('Premium')?.touched && formulario.get('Premium')?.invalid">
+              <div *ngIf="formulario.get('Premium')?.errors?.['required']">La prima es obligatoria.</div>
+            </div>
+          </div>
+        </div> 
+        <button (click)="updateIsurance()" type="submit">Enviar</button>
+      </div>
+    </form>
+    <p-messages styleClass="p-mr-2" class="ui-messages-top"></p-messages>
+  </div>
+  
+  

@@ -1,0 +1,26 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [opened]="true">
+      <div class="logo-container">
+        <h2 class="company-name">SecurityPlus</h2>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <mat-list-item>
+          <a matLine routerLink="main" style="color: white; padding:50px; text-decoration: none;">Inicio</a>
+        </mat-list-item>
+        <mat-list-item>
+          <a matLine routerLink="insurance" style="color: white; padding:50px; text-decoration: none;">Seguros</a>
+        </mat-list-item>
+        <mat-list-item>
+          <a matLine routerLink="client" style="color: white; padding:50px; text-decoration: none;" >Clientes</a>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- Contenido de tu aplicación -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

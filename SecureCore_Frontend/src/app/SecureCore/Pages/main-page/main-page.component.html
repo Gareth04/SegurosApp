@@ -1,0 +1,67 @@
+<div class="main">  
+  <div class="info">
+      <span>
+          Consultas
+      </span>
+  </div>
+  <div class="container">
+      <div class="content">
+          <div id="regis">
+              <div class="p-inputgroup ui-grid-col-6">
+                  <label for=""> Ingrese el código del seguro </label>
+                  <input type="number" class="form-control" id="id" name="id" placeholder="id" [(ngModel)]="id">
+                  <button class="btn" (click)="getDataByCod()">Buscar Seguros</button>
+              </div>
+              <div class="p-inputgroup ui-grid-col-6" [formGroup]="formulario">
+                  <label for="cedula"> Ingrese el número de cédula </label>
+                  <input maxlength="10" formControlName="cedula" type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula">
+                  <button class="btn" (click)="getDataByCed()">Buscar cliente</button>
+                  <div *ngIf="formulario.get('cedula')?.invalid && (formulario.get('cedula')?.dirty || formulario.get('cedula')?.touched)">
+                      <div *ngIf="formulario.get('cedula')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+<p-messages styleClass="p-mr-2" class="ui-messages-top"></p-messages>
+</div>
+<div class="registro-info" [style.display]="showClientTable ? 'block' : 'none'" >
+  <table class="table table-hover center-table">
+      <thead>
+          <tr class="tabla">
+              <th scope="col">Cedula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Edad</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="columna" *ngFor="let cli of client">
+              <td>{{ cli.cedula }}</td>
+              <td>{{ cli.name }}</td>
+              <td>{{ cli.phone }}</td>
+              <td>{{ cli.age }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+<div class="registro-info" [style.display]="showInsuranceTable ? 'block' : 'none'">
+  <table class="table table-hover center-table">
+      <thead>
+          <tr class="tabla">
+              <th scope="col">Seguro</th>
+              <th scope="col">Suma</th>
+              <th scope="col">Prima</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="columna" *ngFor="let ins of insurance">
+              <td>{{ ins.insuranceName }}</td>
+              <td>{{ ins.sumInsured }}</td>
+              <td>{{ ins.premium }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+

@@ -1,0 +1,192 @@
+<div class="asegurado">  
+    <div class="info">
+        <span>
+            Consultar Asegurados
+        </span>
+    </div>
+    <div class="registro-info">
+        <table class="table table-hover ">
+            <thead>
+              <tr class="tabla">
+                <th scope="col">ID</th>
+                <th scope="col">Cedula</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Edad</th>
+                <th scope="col"> </th>
+                <th scope="col">Acciones de seguro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="columna" *ngFor="let cli of client">
+                <th scope="row" >{{cli.id_client}}</th>
+                <td>{{cli.cedula}}</td>
+                <td>{{cli.name}}</td>
+                <td>{{cli.phone}}</td>
+                <td>{{cli.age}}</td>
+                <td>
+                  <button type="button" (click)="openEditPopup(cli)">Editar </button>
+                  <button type="button" (click)="removeClient(cli.id_client)" >Eliminar </button>
+                </td>
+                <td>
+                  <button type="button" (click)="openAgregarPopup(cli)">Agregar </button>
+                  <button type="button" (click)="openRemoveInsurance(cli)">Eliminar </button>
+                </td>
+
+              </tr>
+  
+            </tbody>
+          </table>
+    </div>
+     <div class="table_button">
+      <div class="imprimir-button">
+        <button type="button" (click)="openPopup()">Agregar </button> 
+      </div>
+    </div>
+  
+    <form [formGroup]="formulario">
+      <div class="popup" id="popup"> 
+        <div class="logo">
+            <i class='bx bx-x' style='color:rgb(255, 255, 255)' (click)="closePopup()"></i>
+            <a href="#" >Aseguradora bh</a>
+        </div>
+        <div class="registro_info_conte">
+          <div class="form-item">
+            <label for="cedula"> Ingrese el número de cédula </label>
+              <input maxlength="10" formControlName="cedula" type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula" >
+              <div *ngIf="formulario.get('cedula')?.invalid && (formulario.get('cedula')?.dirty || formulario.get('cedula')?.touched)">
+                <div *ngIf="formulario.get('cedula')?.errors?.['required']">El campo Cedula es obligatorio.</div>
+                <div *ngIf="formulario.get('cedula')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+              </div>
+          </div>
+          <div class="form-item">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" formControlName="name" name="name" placeholder="Ingrese su nombre">
+            <div *ngIf="formulario.get('name')?.touched && formulario.get('name')?.invalid">
+              <div *ngIf="formulario.get('name')?.errors?.['required']">El nombre es obligatorio.</div>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="phone">Telefono</label>
+            <input maxlength="10" type="text" id="phone" formControlName="phone" name="phone" placeholder="Ingrese su numero de telefono">
+            <div *ngIf="formulario.get('phone')?.invalid && (formulario.get('phone')?.dirty || formulario.get('phone')?.touched)">
+              <div *ngIf="formulario.get('phone')?.errors?.['required']">El teléfono es obligatorio.</div>
+              <div *ngIf="formulario.get('phone')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="age">Edad</label>
+            <input type="number" id="age" name="age" formControlName="age" placeholder="Ingrese su edad">
+            <div *ngIf="formulario.get('age')?.touched && formulario.get('age')?.invalid">
+              <div *ngIf="formulario.get('age')?.errors?.['required']">La edad es obligatoria.</div>
+            </div>
+          </div>
+        </div> 
+        <button (click)="sendClient()">Enviar</button>
+        <form (submit)="uploadFile()">
+          <label class="formlabel"  for="excelFile">Seleccionar archivo Excel: &nbsp;</label> 
+          <input type="file" id="excelFile" (change)="handleFileInput($event)">
+          <button type="submit">Subir archivo</button>
+        </form>
+      </div>
+    </form>
+    
+    <form [formGroup]="formulario">
+      <div class="editpopup" id="editpopup"> 
+        <div class="logo">
+            <i class='bx bx-x' style='color:rgb(255, 255, 255)' (click)="closeEditPopup()"></i>
+            <a href="#" >Aseguradora bh</a>
+        </div>
+        <div class="registro_info_conte">
+          <div class="form-item">
+            <label for="cedula"> Ingrese el número de cédula </label>
+              <input maxlength="10" formControlName="cedula" type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula" >
+              <div *ngIf="formulario.get('cedula')?.invalid && (formulario.get('cedula')?.dirty || formulario.get('cedula')?.touched)">
+                <div *ngIf="formulario.get('cedula')?.errors?.['required']">El campo Cedula es obligatorio.</div>
+                <div *ngIf="formulario.get('cedula')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+              </div>
+          </div>
+          <div class="form-item">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" formControlName="name" name="name" placeholder="Ingrese su nombre">
+            <div *ngIf="formulario.get('name')?.touched && formulario.get('name')?.invalid">
+              <div *ngIf="formulario.get('name')?.errors?.['required']">El nombre es obligatorio.</div>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="phone">Telefono</label>
+            <input maxlength="10" type="text" id="phone" formControlName="phone" name="phone" placeholder="Ingrese su numero de telefono">
+            <div *ngIf="formulario.get('phone')?.invalid && (formulario.get('phone')?.dirty || formulario.get('phone')?.touched)">
+              <div *ngIf="formulario.get('phone')?.errors?.['required']">El teléfono es obligatorio.</div>
+              <div *ngIf="formulario.get('phone')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+            </div>
+          </div>
+          <div class="form-item">
+            <label for="age">Edad</label>
+            <input type="number" id="age" name="age" formControlName="age" placeholder="Ingrese su edad">
+            <div *ngIf="formulario.get('age')?.touched && formulario.get('age')?.invalid">
+              <div *ngIf="formulario.get('age')?.errors?.['required']">La edad es obligatoria.</div>
+            </div>
+          </div>
+        </div> 
+        <button (click)="editatAsegurado()">Enviar</button>
+      </div>
+  </form>
+
+  
+  <form [formGroup]="formulario">
+    <div class="agregarpopup" id="agregarpopup"> 
+      <div class="logo">
+          <i class='bx bx-x' style='color:rgb(255, 255, 255)' (click)="closeAgregarPopup()"></i>
+          <a href="#" >Aseguradora bh</a>
+      </div>
+      <div class="registro_info_conteagg">
+        <div class="form-item">
+          <label for="cedula"> Ingrese el número de cédula </label>
+            <input maxlength="10" formControlName="cedula" type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula" >
+            <div *ngIf="formulario.get('cedula')?.invalid && (formulario.get('cedula')?.dirty || formulario.get('cedula')?.touched)">
+              <div *ngIf="formulario.get('cedula')?.errors?.['required']">El campo Cedula es obligatorio.</div>
+              <div *ngIf="formulario.get('cedula')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+            </div>
+        </div>
+        <div class="form-item">
+          <label for="insurance_name">Nombre del seguro</label>
+          <input type="text" id="insurance_name" formControlName="insurance_name" name="insurance_name" placeholder="Ingrese su nombre">
+          <div *ngIf="formulario.get('insurance_name')?.touched && formulario.get('insurance_name')?.invalid">
+            <div *ngIf="formulario.get('insurance_name')?.errors?.['required']">El nombre es obligatorio.</div>
+          </div>
+        </div>
+      </div> 
+      <button (click)="agregarAsegurado()">Enviar</button>
+    </div>
+</form>
+  <form [formGroup]="formulario">
+    <div class="eliminarpopup" id="eliminarpopup"> 
+      <div class="logo">
+          <i class='bx bx-x' style='color:rgb(255, 255, 255)' (click)="closeRemoveInsurance()"></i>
+          <a href="#" >Aseguradora bh</a>
+      </div>
+      <div class="registro_info_conteagg">
+        <div class="form-item">
+          <label for="cedula"> Ingrese el número de cédula </label>
+            <input maxlength="10" formControlName="cedula" type="text" class="form-control" id="cedula" name="cedula" placeholder="Cédula" >
+            <div *ngIf="formulario.get('cedula')?.invalid && (formulario.get('cedula')?.dirty || formulario.get('cedula')?.touched)">
+              <div *ngIf="formulario.get('cedula')?.errors?.['required']">El campo Cedula es obligatorio.</div>
+              <div *ngIf="formulario.get('cedula')?.hasError('pattern')">Ingresar únicamente dígitos numéricos</div>
+            </div>
+        </div>
+        <div class="form-item">
+          <label for="insurance_name">Nombre del seguro</label>
+          <input type="text" id="insurance_name" formControlName="insurance_name" name="insurance_name" placeholder="Ingrese su nombre">
+          <div *ngIf="formulario.get('insurance_name')?.touched && formulario.get('insurance_name')?.invalid">
+            <div *ngIf="formulario.get('insurance_name')?.errors?.['required']">El nombre es obligatorio.</div>
+          </div>
+        </div>
+      </div> 
+      <button (click)="removeInsurance()">Enviar</button>
+    </div>
+</form>
+    <p-messages styleClass="p-mr-2" class="ui-messages-top"></p-messages>
+  </div>
+  
+  

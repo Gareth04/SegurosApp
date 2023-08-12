@@ -1,0 +1,76 @@
+.center-table {
+  margin: 0 auto; /* Esto centrará el elemento horizontalmente */
+}
+.asegurado{
+    width: auto;
+    height: 1200px;
+
+}
+.info{
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente elegante */
+    color: #FF9800; /* Color naranja */
+    font-weight: 700;
+    font-size: 50px;
+}
+.registro-info{
+    display: flex;
+    height: 30vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+
+}
+.table {
+    border-collapse:collapse;
+    width: 80%;
+    text-align: center;
+    height: 100%;
+}
+.table .tabla{
+    background-color: #2E3D99;
+    color: #EEEEEE; 
+    height: 50px;
+    font-family: 'Lato';
+    font-weight: 500;   
+}
+.container {
+    display: flex;
+    text-align: left;
+    height: auto;
+  }
+
+  label{
+    font-family: Lato;
+    font-size: 25px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .p-inputgroup{
+    font-size: 20px;
+    padding: 0.5rem;
+  }
+
+  input{
+    font-size: 20px;
+  }
+ .btn{
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    width: 200px;
+    height: 30px;
+    background-color: #2E3D99;
+    color: #EEEEEE;
+
+}

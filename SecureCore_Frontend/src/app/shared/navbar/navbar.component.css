@@ -1,0 +1,54 @@
+.sidenav-container {
+  width: 100%;
+  height: 100vh;
+}
+
+mat-sidenav {
+  width: 240px;
+  background-color: #2E3D99;
+  color: white;
+}
+
+.logo-container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.company-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #FF9800;
+  margin: 0;
+  padding: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-list {
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  height: 100%;
+  padding-top: 80px; 
+}
+
+.nav-item {
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+}
+
+.custom-link {
+  color: aliceblue;
+}
+
+.mat-icon-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
