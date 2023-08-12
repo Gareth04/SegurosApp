@@ -1,0 +1,7 @@
+1.- Crear la base 
+2.- Crear las tablas
+3.- Descomprimir el backend
+4.- Descomprimir el frontend
+5.- Crear datos 
+6.- Subir documentos
+7.- Crear relaciones entre cliente y seguro en las acciones de seguro(Pestaña de cliente)
